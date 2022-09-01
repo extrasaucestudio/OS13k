@@ -22,8 +22,12 @@ const programStubs =
 ]],
 ['🛠️',,,,shortcut,'Apps',,
 [
+   // xxx 
+   //<img src="https://resizer.neftyblocks.com/avatar/freecitygame?chain=mainnetmainnet&width=100&static=false" alt="WAX" width="40" height="40">
+   // https://resizer.neftyblocks.com/avatar/freecitygame?chain=mainnetmainnet&width=100&static=false
+
     ['🌐','apps/webBrowser.html',,,defaultFlags|shortcut,,'Tiny web browser with history controls.\nMany websites will prevent opening in a frame like this.'],
-    ['<img src="images/wax.svg" alt="WAX" width="40" height="40">','https://play.remixworlds.com',,,defaultFlags|shortcut,,'FreeCityGame.\n'],
+    ['<img src="https://resizer.neftyblocks.com/avatar/freecitygame?chain=mainnetmainnet&width=100&static=false" alt="WAX" width="40" height="40">','https://play.remixworlds.com',,,defaultFlags|shortcut,,'FreeCityGame.\n'],
     ['🌐','https://wheelofnames.remixworlds.com',,,defaultFlags|shortcut,,'wheelofnames.\n'],
     ['🌐','https://html-slot-machine.vercel.app',,,defaultFlags|shortcut,,'xxx.\n'],
     ['🌐','https://slotjs.netlify.app',,,defaultFlags|shortcut,,'xxx.\n'],
@@ -33,7 +37,7 @@ const programStubs =
     ['🌐','https://waxio.io',,,defaultFlags|shortcut,,'xxx.\n'],
     ['🌐','https://waxrush.com',,,defaultFlags|shortcut,,'xxx.\n'],
     ['🌐','https://cloudarcade.remixworlds.com',,,defaultFlags|shortcut,,'xxx.\n'],
-    ['🌐','https://web.telegram.org/k/#@remixworlds',,,defaultFlags|shortcut,,'xxx.\n'],
+    ['🌐','https://wax.alcor.exchange/trade/rmx-remixgamingx_wax-eosio.token',,,defaultFlags|shortcut,,'xxx.\n'],
     ['🌐','https://wallet.wax.io',,,defaultFlags|shortcut,,'xxx.\n'],
     ['🌐','https://cloudarcade.remixworlds.com',,,defaultFlags|shortcut,,'xxx.\n'],
     ['🌐','https://cloudarcade.remixworlds.com',,,defaultFlags|shortcut,,'xxx.\n'],
