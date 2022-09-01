@@ -1,4 +1,4 @@
-<head></head><body background="https://remixworlds.com/images/bg2-plain.png">
+<head></head><body background="images/bg2-plain.png">
 <title>RemixWebOS</title>
 <link rel=icon type=image/x-icon href='favicon.ico'/>
 <meta name="title" content="OS13k"></meta>
@@ -18,7 +18,7 @@
 <style>
 body
 {
-    background-image: url('https://remixworlds.com/images/bg2-plain.png');
+    
     opacity:0;
     margin:0;
     overflow:hidden;
@@ -113,6 +113,7 @@ body
 }
 #background
 {
+    background-image: url('images/bg2-plain.png');
     opacity:0;
     position:absolute;
     width:100%;
@@ -243,7 +244,7 @@ const OS13kVersion = 81;
     // version check, clear local storage if older
     if (localStorage.OS13k && localStorage.OS13kVersion != OS13kVersion)
     {
-        alert('OS13k version out of date! System reset in 3, 2, 1...');
+        alert('RemixWebOS version out of date! System reset in 3, 2, 1...');
 
         delete localStorage.OS13k;
         //localStorage.clear();
