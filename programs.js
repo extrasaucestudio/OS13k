@@ -23,6 +23,7 @@ const programStubs =
 ['🛠️',,,,shortcut,'Apps',,
 [
     ['🌐','apps/webBrowser.html',,,defaultFlags|shortcut,,'Tiny web browser with history controls.\nMany websites will prevent opening in a frame like this.'],
+    ['🌐','https://remixworlds.com',,,defaultFlags|shortcut,,'RemixWorlds.\nMany we'],
     ['🔎','https://dweetview.3d2k.com',,,defaultFlags|shortcut],
     ['⌛','apps/timer.html',400,139,reload|shortcut],
     ['👾','apps/spriteGenerator.html'],
