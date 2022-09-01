@@ -79,7 +79,7 @@ tick = now => {
             const trophyString = '🦐🐡🐠🐟🐙🦑🐬🐳🐋🦈⭐';
             const trophyChar = [...trophyString][level-1] || '⭐';
 
-            level&&level>RemixWebOS.GetTrophy('Aqua Pop','High Score')&&RemixWebOS.Trophy(trophyChar,'Aqua Pop','High Score',level)
+            level&&level>OS13k.GetTrophy('Aqua Pop','High Score')&&OS13k.Trophy(trophyChar,'Aqua Pop','High Score',level)
 
             for (k = [24,13,168,26,343,3,32][level % 7]; k; k >>= 6)
                 for (i = k % 11 - 1; i; objs.push([

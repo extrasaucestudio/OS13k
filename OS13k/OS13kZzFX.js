@@ -4,7 +4,7 @@
 // ZzFXMicro - Zuper Zmall Zound Zynth
 
 // play a zzfx sound
-var zzfx = (...parameters)=> RemixWebOS.PlaySamples(zzfxG(...parameters)),
+var zzfx = (...parameters)=> OS13k.PlaySamples(zzfxG(...parameters)),
 
 // generate zzfx samples
 zzfxG = (volume = 1, randomness = .05, frequency = 220, attack = 0, sustain = 0, release = .1, shape = 0, shapeCurve = 1, slide = 0, deltaSlide = 0, pitchJump = 0, pitchJumpTime = 0, repeatTime = 0, noise = 0, modulation = 0, bitCrush = 0, delay = 0, sustainVolume = 1, decay = 0, tremolo = 0, buffer = [])=>
@@ -18,7 +18,7 @@ zzfxG = (volume = 1, randomness = .05, frequency = 220, attack = 0, sustain = 0,
     // init parameters and helper functions
     let PI2 = Math.PI*2,
     sign = v=> v>0? 1 : -1,
-    length = RemixWebOS.randomSeed = RemixWebOS.Clamp(attack + decay + sustain + release + delay, 9*defaultSampleRate) | 0,
+    length = OS13k.randomSeed = OS13k.Clamp(attack + decay + sustain + release + delay, 9*defaultSampleRate) | 0,
     startSlide = slide *= 500 * PI2 / defaultSampleRate**2,
     startFrequency = frequency *= (1 + randomness*2*Math.random() - randomness) * PI2 / defaultSampleRate,
     modPhase = sign(modulation) * PI2/4,

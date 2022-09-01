@@ -294,8 +294,8 @@ cameraHeading = turn * cameraTurnScale;
 // was checkpoint crossed?
 if (position.z > nextCheckPoint)
 {
-    if (nextCheckPoint > RemixWebOS.GetTrophy('Hue Jumper','Distance Record'))
-        RemixWebOS.Trophy('🏁', 'Hue Jumper', 'Distance Record', nextCheckPoint/1e3|0)
+    if (nextCheckPoint > OS13k.GetTrophy('Hue Jumper','Distance Record'))
+        OS13k.Trophy('🏁', 'Hue Jumper', 'Distance Record', nextCheckPoint/1e3|0)
 
   time += checkPointTime;               // add more time
   nextCheckPoint += checkPointDistance; // set next checkpoint
@@ -304,12 +304,12 @@ if (position.z > nextCheckPoint)
 
 if (time <= 0)
 {
-    if (position.z > RemixWebOS.GetTrophy('Hue Jumper','Distance Record'))
-        RemixWebOS.Trophy('🏁', 'Hue Jumper', 'Distance Record', position.z/1e3|0)
+    if (position.z > OS13k.GetTrophy('Hue Jumper','Distance Record'))
+        OS13k.Trophy('🏁', 'Hue Jumper', 'Distance Record', position.z/1e3|0)
 }
 
 if (position.z > 1e6)
-    RemixWebOS.Trophy('🌲','Hue Jumper','End of The Road')
+    OS13k.Trophy('🌲','Hue Jumper','End of The Road')
 
 //////////////////////////////////////////////////////////////////
 // draw background - sky, sun/moon, mountains, and horizon

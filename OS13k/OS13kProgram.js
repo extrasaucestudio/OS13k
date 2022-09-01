@@ -20,9 +20,9 @@ defaultFlags = full|reload|resize,
 defaultWidth = 720, defaultHeight = 405; // 16:9 aspect
 
 ///////////////////////////////////////////////////////////////////////////////
-// RemixWebOSProgram - stores program info and handles loading from folders
+// OS13kProgram - stores program info and handles loading from folders
     
-class RemixWebOSProgram extends HTMLElement
+class OS13kProgram extends HTMLElement
 {
 	constructor(icon='💠', src='', width=defaultWidth, height=defaultHeight, flags, name='', help='', folder, userProgramId, userFolder)
     {
@@ -76,7 +76,7 @@ class RemixWebOSProgram extends HTMLElement
         this.flags & sticky ? this.info.open && this.Open() : this.id == startProgramId && (startProgram = this);
         
         // create desktop shortcut icon
-        this.flags & shortcut && desktopIcons.appendChild(new RemixWebOSDesktopIcon(this));
+        this.flags & shortcut && desktopIcons.appendChild(new OS13kDesktopIcon(this));
     }
 
     SetName(icon, name)
@@ -87,7 +87,7 @@ class RemixWebOSProgram extends HTMLElement
         
         // name and folder
         this.innerHTML += `<div style=flex:1;padding-right:9;pointer-events:none>${
-                this.name = RemixWebOS.StripHTML(name) || 'User Program ' + this.id
+                this.name = OS13k.StripHTML(name) || 'User Program ' + this.id
             }</div>` + (this.folder? '▶' : '');
     }
     
@@ -128,7 +128,7 @@ class RemixWebOSProgram extends HTMLElement
             programInfos = programInfos.filter(info=> info.code == undefined || this.userFolder && info.userFolder != this.userFolder);
             
             // rebuild menu and play sound
-            RebuildMenu(RemixWebOS.Save(SystemSound(soundClose, 4)));
+            RebuildMenu(OS13k.Save(SystemSound(soundClose, 4)));
         }
         else if (this.flags & closeAll)
         {
@@ -140,7 +140,7 @@ class RemixWebOSProgram extends HTMLElement
             windowOpenX = startOpenOffset;
             windowOpenY = startOpenOffset + taskbarHeight;
 
-            RemixWebOS.Trophy('☕','RemixWebOS','Coffee Is For Closers','Closed All');
+            OS13k.Trophy('☕','OS13k','Coffee Is For Closers','Closed All');
         }
         else if (this.src || this.userProgram || this.folder)
         {
@@ -155,7 +155,7 @@ class RemixWebOSProgram extends HTMLElement
                 (windowOpenY += titlebarHeight) > 300 && (windowOpenY =  windowOpenY = startOpenOffset + taskbarHeight));
             
             // open window
-            this.window = new RemixWebOSWindow(this, x, y);
+            this.window = new OS13kWindow(this, x, y);
 
             // update info and save
             this.Save();
@@ -206,8 +206,8 @@ class RemixWebOSProgram extends HTMLElement
         
         // add to programs info and save
         let i = programInfos.findIndex(e=> e.id == this.id);
-        RemixWebOS.Save(i < 0 ? programInfos.push(this.info) : programInfos[i] = this.info);
+        OS13k.Save(i < 0 ? programInfos.push(this.info) : programInfos[i] = this.info);
     }
     
-} // RemixWebOSProgram
-customElements.define('p-', RemixWebOSProgram);
+} // OS13kProgram
+customElements.define('p-', OS13kProgram);

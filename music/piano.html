@@ -50,10 +50,10 @@ R = e=>
                 D[i]                      // add to buffer
             ]))
         :
-        D[i] = RemixWebOS.SeedSamples(         // get seed samples
+        D[i] = OS13k.SeedSamples(         // get seed samples
             S.value, 9, V.value/50, 0, f) // seed parameters
     )
-        f = parent.RemixWebOS.Note(i*12-45),   // root frequency C
+        f = parent.OS13k.Note(i*12-45),   // root frequency C
         D[i] = [];                        // clear samples
 }
 
@@ -69,7 +69,7 @@ P = e=> e < 0 || A[e] ||         // is note valid and not playing
 
     // play cached sound
     (A[e] =                                 // set sound                 
-        RemixWebOS.PlaySamples(                  // play samples
+        OS13k.PlaySamples(                  // play samples
             D[2 + O.value*1 + e/12|0], 2)). // get octave
                 detune.value =              // set frequency
                     e%12*100 +              // get note offset
@@ -135,9 +135,9 @@ E(A = []);
 // play note on key down
 onkeydown = e=>
     document.activeElement == S || // not when editing seed
-        P(RemixWebOS.PianoKey(e));                   // play note
+        P(OS13k.PianoKey(e));                   // play note
 
 // release note on key up
-onkeyup = e=> X(RemixWebOS.PianoKey(e));
+onkeyup = e=> X(OS13k.PianoKey(e));
 
 </script>

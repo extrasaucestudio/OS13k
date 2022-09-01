@@ -1,7 +1,7 @@
 // Don't Fall - by Tomxor
 
 t||(A=B=P=8,a=b=p=0);
-i=RemixWebOS.Input(window);
+i=OS13k.Input(window);
 a=-i.x/2;
 k=i.y;
 
@@ -19,7 +19,7 @@ G=T(y+z^z-y),
 M=G>5,
 
 A^X|B^Y|!M||(
-	RemixWebOS.PlaySeed(G*96,p+k*k,.3),
+	OS13k.PlaySeed(G*96,p+k*k,.3),
 	b=k?p/3:.2,
 	p=k?0:p>1?1:p+G%2/12
 ),
@@ -34,4 +34,4 @@ x.fillStyle=`hsl(${M*G*30+m}deg 99%${M*50+m*(1-S(t/16)**3)/2}%`;
 x.font=16+p*16+'px a';
 x.fillText(k?'🙉':'🐵',A*8-8-p*8,B*8);
 
-B<48&&RemixWebOS.Trophy([...'🐢🦒🦉🦇🦜🕊🐒🦅'][y=32-y>>5],"Dont Fall",y*16+'ft');
+B<48&&OS13k.Trophy([...'🐢🦒🦉🦇🦜🕊🐒🦅'][y=32-y>>5],"Dont Fall",y*16+'ft');

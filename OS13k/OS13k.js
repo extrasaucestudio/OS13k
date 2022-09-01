@@ -1,17 +1,17 @@
 'use strict'
 
 ///////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Client Interface
+// OS13k Client Interface
 
-class _RemixWebOS
+class _OS13k
 {
 
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Math
+// OS13k Math
 
     Clamp   (a, max=1, min=0) { return a < min ? min : a > max ? max : a; }
-    Percent (v, a, b)         { return b-a ? RemixWebOS.Clamp((v-a)/(b-a)) : 0; }
-    Lerp    (p, a, b)         { return a + RemixWebOS.Clamp(p) * (b-a); }
+    Percent (v, a, b)         { return b-a ? OS13k.Clamp((v-a)/(b-a)) : 0; }
+    Lerp    (p, a, b)         { return a + OS13k.Clamp(p) * (b-a); }
 
     // convert string to hash value like Java's hashCode()
     Hash    (s)               { return [...s].reduce((a,c)=> c.charCodeAt()+a*31|0, 0); }
@@ -19,19 +19,19 @@ class _RemixWebOS
     // seeded random numbers - Xorshift
     Random(max=1, min=0)
     {
-        RemixWebOS.randomSeed ^= RemixWebOS.randomSeed << 13;
-        RemixWebOS.randomSeed ^= RemixWebOS.randomSeed >> 17; // note: >>> would use the full 32 bit range
-        return RemixWebOS.Lerp(Math.abs(RemixWebOS.randomSeed ^= RemixWebOS.randomSeed << 5) % 1e9 / 1e9, min, max);
+        OS13k.randomSeed ^= OS13k.randomSeed << 13;
+        OS13k.randomSeed ^= OS13k.randomSeed >> 17; // note: >>> would use the full 32 bit range
+        return OS13k.Lerp(Math.abs(OS13k.randomSeed ^= OS13k.randomSeed << 5) % 1e9 / 1e9, min, max);
     }
 
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Trophies
+// OS13k Trophies
     
     // award player with trophy
     Trophy(icon, game, name, message)
     {
         // replace commas and apostrophes
-        let key, Clean = string=> RemixWebOS.StripHTML(string||'', maxWordLength).replace(/[,`]/g, ''),
+        let key, Clean = string=> OS13k.StripHTML(string||'', maxWordLength).replace(/[,`]/g, ''),
         
             // init trophy data
             trophyData = 
@@ -53,13 +53,13 @@ class _RemixWebOS
         i < 0 ? trophies.unshift( trophyData ) : trophies[i] = trophyData;
 
         // save trophy
-        localStorage['RemixWebOSTrophy,' + key] = message;
+        localStorage['OS13kTrophy,' + key] = message;
 
         // use game as name if there is no name
         name || (name = game, game = '');
 
         // add trophy popup
-        RemixWebOS.Popup(`<div class=trophyIcon>${   // popup html
+        OS13k.Popup(`<div class=trophyIcon>${   // popup html
                 icon || '🏆' }</div><div><b>${ // icon
                 name }</b><br><i>${            // name
                 game }</i></div>` +            // game
@@ -68,7 +68,7 @@ class _RemixWebOS
             'ja');                             // language 
 
         // save and reload trophy window
-        RemixWebOS.Save(trophyTrayIcon.program.window && trophyTrayIcon.program.window.Reload());
+        OS13k.Save(trophyTrayIcon.program.window && trophyTrayIcon.program.window.Reload());
     }
     
     // get message, 0 if no trophy
@@ -82,22 +82,22 @@ class _RemixWebOS
     Trophies() { return trophies; }
     
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Audio
+// OS13k Audio
 
     // play seed sound
     PlaySeed(seed, lengthScale=1, volume=1, randomness=.05, frequency, isMusic)
-    { return RemixWebOS.PlaySamples(RemixWebOS.SeedSamples(...arguments), isMusic); }
+    { return OS13k.PlaySamples(OS13k.SeedSamples(...arguments), isMusic); }
     
     // get seed samples
     SeedSamples(...parameters)
-    { return zzfxG(...RemixWebOS.SeedParameters(...parameters)); }
+    { return zzfxG(...OS13k.SeedParameters(...parameters)); }
     
     // get zzfx sound parameters from seed
     SeedParameters(seed, lengthScale=1, volume=1, randomness=.05, frequency)
     {
         // use default params if no seed
         if (!seed)
-            return [volume, randomness, frequency || RemixWebOS.Note(-21), 0, lengthScale];
+            return [volume, randomness, frequency || OS13k.Note(-21), 0, lengthScale];
 
         // check if seed is a number
         if (parseFloat(seed = (seed+'').trim()) != seed)
@@ -111,14 +111,14 @@ class _RemixWebOS
                     p.length ? parseFloat(p) : undefined);
             
             // use hash string as seed 
-            seed = RemixWebOS.Hash(seed);
+            seed = OS13k.Hash(seed);
         }
 
         // set seed
-        RemixWebOS.randomSeed = seed;
+        OS13k.randomSeed = seed;
      
         // helper functions
-        let R=()=>RemixWebOS.Random(), C=()=>R()<.5?R():0, S=e=>C()?e:-e,
+        let R=()=>OS13k.Random(), C=()=>R()<.5?R():0, S=e=>C()?e:-e,
         
             // randomize sound length
             attack  = R()**3/4*lengthScale,
@@ -155,7 +155,7 @@ class _RemixWebOS
     
     // play audio sample data
     PlaySamples(samples, isMusic, sampleRate=defaultSampleRate)
-    { return RemixWebOS.PlaySamplesArray([samples], isMusic, sampleRate); }
+    { return OS13k.PlaySamplesArray([samples], isMusic, sampleRate); }
     
     // play array of audio sample data, connect analyser to gain if isMusic > 1 for instruments
     PlaySamplesArray(samplesArray, isMusic, sampleRate=defaultSampleRate)
@@ -182,7 +182,7 @@ class _RemixWebOS
     PlayMusic(song) 
     { 
         // catch errors when playing music
-        try { return RemixWebOS.PlaySamplesArray(zzfxM(...song), 1); }
+        try { return OS13k.PlaySamplesArray(zzfxM(...song), 1); }
         catch(e) { console.log(e); }
     }
     
@@ -236,7 +236,7 @@ class _RemixWebOS
     }
 
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Shaders
+// OS13k Shaders
 
     // create pixel shader
     CreateShader(canvas, code)
@@ -278,11 +278,11 @@ class _RemixWebOS
             `uniform vec4 iMouse;` +
             `uniform vec3 iResolution;` +
             `uniform sampler2D iChannel0;` +
-            `out vec4 RemixWebOScolor;\n` +
+            `out vec4 OS13kcolor;\n` +
             `${code}` +
             `\nvoid main()` +
-            `{mainImage(RemixWebOScolor,gl_FragCoord.xy);` +
-            `RemixWebOScolor.a=1.;}`;
+            `{mainImage(OS13kcolor,gl_FragCoord.xy);` +
+            `OS13kcolor.a=1.;}`;
         x.shaderSource(pixelShader, shaderProgramCode);
         x.compileShader(pixelShader);
 
@@ -341,7 +341,7 @@ class _RemixWebOS
     }
     
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Text
+// OS13k Text
     
     // remove html tags from a string and clamp length
     StripHTML(string, maxLength)
@@ -359,16 +359,16 @@ class _RemixWebOS
     }
 
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Input
+// OS13k Input
 
     // create and update an input object for keyboard and mouse control
     Input(inputWindow)
     {
         let inputCopy, Pressed = (k)=> inputCopy.keydown[k] || inputCopy.keypress[k];
-        if (inputWindow.document.RemixWebOSInput)
+        if (inputWindow.document.OS13kInput)
         {
             // make copy of last frame input
-            inputCopy = {...inputWindow.document.RemixWebOSInput};
+            inputCopy = {...inputWindow.document.OS13kInput};
 
             // get direction from wasd or arrow keys
             inputCopy.x = inputCopy.y = 0;
@@ -379,14 +379,14 @@ class _RemixWebOS
         }
 
         // create or clear input object
-        let input = inputWindow.document.RemixWebOSInput =
+        let input = inputWindow.document.OS13kInput =
         {
             x: 0, y: 0,
             keypress: [], mousepress: [],
-            keydown:   inputWindow.document.RemixWebOSInput ? inputWindow.document.RemixWebOSInput.keydown : [],
-            mousedown: inputWindow.document.RemixWebOSInput ? inputWindow.document.RemixWebOSInput.mousedown : [],
-            mousex:    inputWindow.document.RemixWebOSInput ? inputWindow.document.RemixWebOSInput.mousex : 0,
-            mousey:    inputWindow.document.RemixWebOSInput ? inputWindow.document.RemixWebOSInput.mousey : 0,
+            keydown:   inputWindow.document.OS13kInput ? inputWindow.document.OS13kInput.keydown : [],
+            mousedown: inputWindow.document.OS13kInput ? inputWindow.document.OS13kInput.mousedown : [],
+            mousex:    inputWindow.document.OS13kInput ? inputWindow.document.OS13kInput.mousex : 0,
+            mousey:    inputWindow.document.OS13kInput ? inputWindow.document.OS13kInput.mousey : 0,
             wheel : 0
         };
 
@@ -395,7 +395,7 @@ class _RemixWebOS
         inputWindow.onkeyup     = e=> input.keydown[e.keyCode] = 0;
         inputWindow.onmousedown = e=> (input.mousedown[e.button] = input.mousepress[e.button] = 1, e.button != 1);
         inputWindow.onmouseup   = e=> input.mousedown[e.button] = 0;
-        inputWindow.onmousemove = e=> (input.mousex = RemixWebOS.Clamp(e.x/inputWindow.innerWidth), input.mousey = RemixWebOS.Clamp(e.y/inputWindow.innerHeight));
+        inputWindow.onmousemove = e=> (input.mousex = OS13k.Clamp(e.x/inputWindow.innerWidth), input.mousey = OS13k.Clamp(e.y/inputWindow.innerHeight));
         inputWindow.onblur      = e=> (input.keydown = [], input.mousedown = []);
         inputWindow.onwheel     = e=> input.wheel = e.deltaY;
 
@@ -404,12 +404,12 @@ class _RemixWebOS
     }
     
 /////////////////////////////////////////////////////////////////////////////
-// RemixWebOS Seralization
+// OS13k Seralization
     
     Save()
     {
         // save data if finished startup
-        finishedStartup && (localStorage.RemixWebOS = JSON.stringify
+        finishedStartup && (localStorage.OS13k = JSON.stringify
         ([
             trophies,
             settings,
@@ -436,7 +436,7 @@ class _RemixWebOS
     SaveSettings(volume, musicVolume, speech, popups, systemSounds, color1, color2, text, filter)
     {
         // set settings and save
-        RemixWebOS.Save(settings = {
+        OS13k.Save(settings = {
             v:gain.gain.value = volume,
             m:gainMusic.gain.value = musicVolume,
             s:speech,
@@ -450,11 +450,11 @@ class _RemixWebOS
     }
     
     Settings() { return settings; }
-}; // _RemixWebOS
-var RemixWebOS = new _RemixWebOS;
+}; // _OS13k
+var OS13k = new _OS13k;
 
 ///////////////////////////////////////////////////////////////////////////////
-// RemixWebOS System Functions and Consts - handles non client facing features of RemixWebOS
+// OS13k System Functions and Consts - handles non client facing features of OS13k
 
 const taskbarHeight = 44, titlebarHeight = 37, programHeight = 26, 
       startOpenOffset = 99, popupTime = 3, defaultVolume = .3, 
@@ -488,7 +488,7 @@ let grabWindow, grabOffsetX, grabOffsetY, finishedStartup, nextUserProgramId = 0
     trophyTrayIcon, settingsTrayIcon, clockTrayIcon, musicTrayIcon, stickyNoteTrayIcon,
 
     // volume, music, speech, popups, color1, color2, text, filter
-    settings = {v:.2, m:.2, s:1, p:1, o:1, c:'#222233', d:'#332222', t:'RemixWebOS', f:''},
+    settings = {v:.2, m:.2, s:1, p:1, o:1, c:'#222233', d:'#332222', t:'OS13k', f:''},
 
     // init web audio
     audioContext = new (window.AudioContext||webkitAudioContext),
@@ -504,7 +504,7 @@ Update = time=>
     requestAnimationFrame(Update);
     
     // update startup routine
-    loading | finishedStartup || RemixWebOS.Save(
+    loading | finishedStartup || OS13k.Save(
 
         // create analyser canvas
         musicTrayIcon.prepend(analyserCanvas),
@@ -525,7 +525,7 @@ Update = time=>
     lastActiveFrame = activeFrame;
 
     // fade in desktop after loading
-    background.style.opacity = document.body.style.opacity = RemixWebOS.Clamp(!loading*.02 + document.body.style.opacity*1);
+    background.style.opacity = document.body.style.opacity = OS13k.Clamp(!loading*.02 + document.body.style.opacity*1);
 
     // update trophy count
     let trophyString = trophies.length + '🏆';
@@ -556,7 +556,7 @@ Update = time=>
         context.fillRect(i, 31, 1, -7*volume);
         
         // set anaylzer data, normalize between 0-1
-        analyserData[i++] = RemixWebOS.Clamp(volume / 5);
+        analyserData[i++] = OS13k.Clamp(volume / 5);
 
         // save how long there has been no music
         lastMusicTime = volume ? time : lastMusicTime;
@@ -570,7 +570,7 @@ Update = time=>
     [...popups.children].map((popup,i)=>
     {
         // speak popup
-        popup.speak && RemixWebOS.Speak(popup.speak, popup.speakLanguage);
+        popup.speak && OS13k.Speak(popup.speak, popup.speakLanguage);
         popup.speak = 0;
         
         if (!settings.p)
@@ -657,41 +657,41 @@ CloseMenus = ()=>
 
 // try to give trophy if key is valid
 CheckForTrophy = (key, keyParts = key ? key.split(',') : [])=>
-    keyParts.shift() == 'RemixWebOSTrophy' &&
-        (keyParts.length = 3, RemixWebOS.Trophy(...keyParts, localStorage[key])),
+    keyParts.shift() == 'OS13kTrophy' &&
+        (keyParts.length = 3, OS13k.Trophy(...keyParts, localStorage[key])),
 
 // stop any current or queued speech
 StopSpeech = ()=> speechSynthesis && speechSynthesis.cancel(),
 
 // play system sound if enabled
-SystemSound = (...parameters)=> finishedStartup & hadInput & settings.o && RemixWebOS.PlaySeed(...parameters);
+SystemSound = (...parameters)=> finishedStartup & hadInput & settings.o && OS13k.PlaySeed(...parameters);
 
 ///////////////////////////////////////////////////////////////////////////////
-// Start RemixWebOS!
+// Start OS13k!
 
 // load save data
-if (localStorage.RemixWebOS)
-    [trophies, settings, programInfos, startProgramId, nextUserProgramId] = JSON.parse(localStorage.RemixWebOS);
+if (localStorage.OS13k)
+    [trophies, settings, programInfos, startProgramId, nextUserProgramId] = JSON.parse(localStorage.OS13k);
 
 // save and update settings
-RemixWebOS.Save();
+OS13k.Save();
 
 // setup audio
 gain.connect(audioContext.destination);
 gainMusic.connect(audioContext.destination);
 
 // create tray icons
-trophyTrayIcon     = new RemixWebOSTrayIcon();
-musicTrayIcon      = new RemixWebOSTrayIcon();
-settingsTrayIcon   = new RemixWebOSTrayIcon();
-stickyNoteTrayIcon = new RemixWebOSTrayIcon();
-clockTrayIcon      = new RemixWebOSTrayIcon();
+trophyTrayIcon     = new OS13kTrayIcon();
+musicTrayIcon      = new OS13kTrayIcon();
+settingsTrayIcon   = new OS13kTrayIcon();
+stickyNoteTrayIcon = new OS13kTrayIcon();
+clockTrayIcon      = new OS13kTrayIcon();
 
 // create load program taskbar icon and add folders/programs
-RebuildMenu(loadIcon = new RemixWebOSTaskbarIcon({icon:'💾', name:'Load'}, new RemixWebOSProgramMenu(programStubs)));
+RebuildMenu(loadIcon = new OS13kTaskbarIcon({icon:'💾', name:'Load'}, new OS13kProgramMenu(programStubs)));
 
 // welcome message
-RemixWebOS.Trophy('👋','','Welcome to RemixWebOS!');
+OS13k.Trophy('👋','','Welcome to OS13k!');
 
 // search local storage for new trophies (from other JS13k games)1
 for (let key in localStorage) CheckForTrophy(key);

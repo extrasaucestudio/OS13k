@@ -22,10 +22,10 @@ O.innerHTML = '';
 if (D.value)
 try {W.eval('f=x=>'+D.value);W.f(0);
 
-I = parent.RemixWebOS.Input(window)
+I = parent.OS13k.Input(window)
 
 A = [];
-a = parent.RemixWebOS.Clamp(a+a*I.wheel/1e3, 1e3, .1);
+a = parent.OS13k.Clamp(a+a*I.wheel/1e3, 1e3, .1);
 n = 1e9;
 m = -n;
 for(i = 0; i < 1921; i++)
@@ -37,11 +37,11 @@ m-n ? 0 : n = -(m = Math.abs(m*2));
 
 X.lineWidth = 3;
 X.strokeRect(960, 0, 0, 2e3);
-X.strokeRect(0, Y=RemixWebOS.Lerp(RemixWebOS.Percent(0,m,n), 0, 1080), 2e3, 0);
+X.strokeRect(0, Y=OS13k.Lerp(OS13k.Percent(0,m,n), 0, 1080), 2e3, 0);
 
 X.lineWidth = 9;
 for(i = 0; i < 1921; i++)
-    X.lineTo(i, RemixWebOS.Lerp(RemixWebOS.Percent(A[i],m,n), 0, 1080));
+    X.lineTo(i, OS13k.Lerp(OS13k.Percent(A[i],m,n), 0, 1080));
 X.beginPath(X.stroke());
 
 X.font = '3em"';
@@ -56,7 +56,7 @@ p = I.mousex*2-1;
 Y = W.f(a*p);
 O.innerHTML = `x = ${a*p}<br>y = ${Y}`;
 
-X.fill(X.arc(960 + p*960, RemixWebOS.Lerp(RemixWebOS.Percent(Y,m,n), 0, 1080), 19, 0, 7));
+X.fill(X.arc(960 + p*960, OS13k.Lerp(OS13k.Percent(Y,m,n), 0, 1080), 19, 0, 7));
 
 }catch (e) {}}
 

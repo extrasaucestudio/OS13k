@@ -1,8 +1,8 @@
 <style>*{font-family:monospace;font-size:20;background:#000;color:#ccc}pre{display:inline}</style>
 <body>
 <iframe id=f style=display:none></iframe>JS> Options:
-<input id=o type=checkbox onclick=localStorage.RemixWebOSCo=o.checked> Objects
-<input id=c type=checkbox onclick=localStorage.RemixWebOSCc=c.checked> Clear
+<input id=o type=checkbox onclick=localStorage.OS13kCo=o.checked> Objects
+<input id=c type=checkbox onclick=localStorage.OS13kCc=c.checked> Clear
 <span id=G><input id=z type=checkbox onclick=X=0> Glitch</span>
 <input id=i style=background:#222;color:#fff;width:100% autocomplete=off>
 <div id=w><br>Enter JS code. Try not to freeze the browser! 😅
@@ -10,12 +10,12 @@
 
 i.focus();
 
-// set up RemixWebOS
+// set up OS13k
 W=f.contentWindow
-W.RemixWebOS=RemixWebOS=parent.RemixWebOS
+W.OS13k=OS13k=parent.OS13k
 
 // allow console to run in standalone mode
-RemixWebOS = RemixWebOS ||
+OS13k = OS13k ||
 {
     GetTrophy:()=>1,
     Speak:()=>1,
@@ -23,24 +23,24 @@ RemixWebOS = RemixWebOS ||
 }
 
 // frozen trophy
-localStorage.RemixWebOSFrozen &&
-    RemixWebOS.Trophy('🧊','RemixWebOS','Frozen',`Froze The Browser\n${
-    localStorage.RemixWebOSFrozen }`);
+localStorage.OS13kFrozen &&
+    OS13k.Trophy('🧊','OS13k','Frozen',`Froze The Browser\n${
+    localStorage.OS13kFrozen }`);
 
 // add unicode glitches to a string
 // based on dweet by f8f82804 www.dwitter.net/d/11808
-Z=(s,c)=>{for(c;c-->0;)s=(s+='').slice(0,r=Math.random()*s.length+1)+String.fromCharCode(768+99*Math.random())+s.slice(r);return RemixWebOS.StripHTML(s)}
+Z=(s,c)=>{for(c;c-->0;)s=(s+='').slice(0,r=Math.random()*s.length+1)+String.fromCharCode(768+99*Math.random())+s.slice(r);return OS13k.StripHTML(s)}
 
 // set saved config
-c.checked=localStorage.RemixWebOSCc!='false'
-o.checked=localStorage.RemixWebOSCo!='false'
+c.checked=localStorage.OS13kCc!='false'
+o.checked=localStorage.OS13kCo!='false'
 
 // create memory
 M=[]
 m=0
 
 // hide glitch checkbox if not unlocked
-t=RemixWebOS.GetTrophy('RemixWebOS','Frozen')||(G.style.display='none')
+t=OS13k.GetTrophy('OS13k','Frozen')||(G.style.display='none')
 
 // error check
 E=E=>(
@@ -76,7 +76,7 @@ i.onkeydown=K=>{
 
         // try to eval code in parens first, fixes {1:2}
         // save input to check frozen on restart
-        try{R=W.eval(`(${localStorage.RemixWebOSFrozen=I})`)}
+        try{R=W.eval(`(${localStorage.OS13kFrozen=I})`)}
 
         // check if code was invalid
         catch(e){
@@ -99,7 +99,7 @@ i.onkeydown=K=>{
         }
 
         // save that code did not freeze
-        delete localStorage.RemixWebOSFrozen
+        delete localStorage.OS13kFrozen
 
         // build object info if object
         O=''

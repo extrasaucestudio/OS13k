@@ -11,7 +11,7 @@ Popups <input type=checkbox id=P oninput=s()>
 <span id=F><script>
 
 // save settings and rebuild
-s = e=>parent.RemixWebOS.SaveSettings
+s = e=>parent.OS13k.SaveSettings
 (
     V.value / 100,  // volume
     M.value / 100,  // music volume
@@ -40,7 +40,7 @@ s = e=>parent.RemixWebOS.SaveSettings
 
 // build settings
 s(
-    i = parent.RemixWebOS.Settings(),  // load settings
+    i = parent.OS13k.Settings(),  // load settings
     V.value   = i.v * 100,        // volume
     M.value   = i.m * 100,        // music volume
     S.checked = i.s,              // speech

@@ -3,12 +3,12 @@ A=0;
 P=e=>
 {
     A&&A.stop();
-    l = (L.value = RemixWebOS.Clamp(L.value, 120)) * 44100;
+    l = (L.value = OS13k.Clamp(L.value, 120)) * 44100;
     s = [];
     try {
         eval('f=t=>' + I.value);
-        for(i=0; i<l; s[i] = RemixWebOS.Clamp(f(i++)) - .5);
-        A = RemixWebOS.PlaySamples(s, 1);
+        for(i=0; i<l; s[i] = OS13k.Clamp(f(i++)) - .5);
+        A = OS13k.PlaySamples(s, 1);
     } catch(e) {}
 }
 onunload=e=>A&&A.stop();

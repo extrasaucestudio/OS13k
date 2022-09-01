@@ -16,7 +16,7 @@ const d = document;
 
 // shim variables
 a, b, c, d;
-let RemixWebOS = parent.RemixWebOS;
+let OS13k = parent.OS13k;
 
 // constants (will be auto replace in minified)
 const WIDTH = 1280;
@@ -99,10 +99,10 @@ setInterval(_=> // main game loop
     :
     enemyCount || (spawnCount = ++wave+19, spawnWait = 200,
     
-     // RemixWebOS trophies
-     (wave > 1 && wave < 10 && wave > RemixWebOS.GetTrophy('Batafuraiko','Best Wave') && RemixWebOS.Trophy('🦋','Batafuraiko', 'Best Wave', wave) ),
+     // os13k trophies
+     (wave > 1 && wave < 10 && wave > OS13k.GetTrophy('Batafuraiko','Best Wave') && OS13k.Trophy('🦋','Batafuraiko', 'Best Wave', wave) ),
      
-     (wave == 10 && RemixWebOS.Trophy('🌼','Batafuraiko', 'You Win') )
+     (wave == 10 && OS13k.Trophy('🌼','Batafuraiko', 'You Win') )
     
     );      // go to next wave when no enemies are left
 
@@ -133,7 +133,7 @@ setInterval(_=> // main game loop
             o.t > TYPE_Enemy_Pawn &                                   // check if shooty enemy
             Rand(99) < 1 && player.r &&
             (
-                RemixWebOS.PlaySeed(270, .2+(o.t-TYPE_Enemy)/3),
+                OS13k.PlaySeed(270, .2+(o.t-TYPE_Enemy)/3),
                 MakeObject(                                           // spawn bullet
                     o.t < TYPE_Enemy_Mothership? TYPE_Bullet : o.t-5, // projectile type
                     o.x, o.y, o.r/3,                                  // position, size
@@ -188,7 +188,7 @@ setInterval(_=> // main game loop
                 Math.hypot(o.x-p.x, o.y-p.y) < p.r*2 & // overlapping
                 p.e &&                                 // is enemy
                 MakeObject(TYPE_Explosion, o.x, o.y, 25, 0, o.r = 0, 4, --p.h     // bullet hit effect, damage enemy
-                ? RemixWebOS.PlaySeed(75, .5) : (RemixWebOS.PlaySeed(205, .2+(p.t-TYPE_Enemy)/3),
+                ? OS13k.PlaySeed(75, .5) : (OS13k.PlaySeed(205, .2+(p.t-TYPE_Enemy)/3),
                     MakeObject(TYPE_Explosion, p.x, p.y, p.r*2, 0, p.r = 0, 2 )))   // make explosion, kill enemy
             );
 

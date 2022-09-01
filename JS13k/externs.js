@@ -1,23 +1,23 @@
 /**
- * @fileoverview Public API of RemixWebOS.js
+ * @fileoverview Public API of OS13k.js
  * @externs
  */
 
-RemixWebOS;
+OS13k;
 iframeContent;
-iframeContent.RemixWebOS;
-iframeContent.RemixWebOSWindow;
+iframeContent.OS13k;
+iframeContent.OS13kWindow;
 iframeContent.zzfx;
 
-window.document.RemixWebOSInput;
-window.document.RemixWebOSInput.x;
-window.document.RemixWebOSInput.y;
-window.document.RemixWebOSInput.keypress;
-window.document.RemixWebOSInput.mousepress;
-window.document.RemixWebOSInput.keydown;
-window.document.RemixWebOSInput.mousedown;
-window.document.RemixWebOSInput.mousex;
-window.document.RemixWebOSInput.mousey;
+window.document.OS13kInput;
+window.document.OS13kInput.x;
+window.document.OS13kInput.y;
+window.document.OS13kInput.keypress;
+window.document.OS13kInput.mousepress;
+window.document.OS13kInput.keydown;
+window.document.OS13kInput.mousedown;
+window.document.OS13kInput.mousex;
+window.document.OS13kInput.mousey;
 
 settings.v; // volume
 settings.m; // music volume
@@ -32,11 +32,11 @@ zzfx;
 zzfxG;
 zzfxM;
 
-localStorage.RemixWebOS
-localStorage.RemixWebOSVersion;
+localStorage.OS13k
+localStorage.OS13kVersion;
 source.gain;
 
-_RemixWebOS = class
+_OS13k = class
 {
     Clamp(a, max=1, min=0) {}
     Percent(v, a, b) {}

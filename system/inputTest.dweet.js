@@ -1,4 +1,4 @@
-i = RemixWebOS.Input(window)
+i = OS13k.Input(window)
 c.width |= 0
 x.font = '4em"'
 x.fillText('x: ' + i.x + ' y: ' + i.y, X=h=79, Y=h)

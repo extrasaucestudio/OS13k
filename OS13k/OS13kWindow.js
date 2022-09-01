@@ -1,9 +1,9 @@
 'use strict'
 
 ///////////////////////////////////////////////////////////////////////////////
-// RemixWebOSWindow - window to a running program, handles program loading
+// OS13kWindow - window to a running program, handles program loading
 
-class RemixWebOSWindow extends HTMLElement
+class OS13kWindow extends HTMLElement
 {
 	constructor(program, x, y)
     {
@@ -120,7 +120,7 @@ class RemixWebOSWindow extends HTMLElement
         saveButton.onmousedown = ()=>
             link.click(SystemSound(soundSave),
             link.href = URL.createObjectURL(new Blob([this.codeText.value])),
-            link.download = 'RemixWebOS_' + program.name);
+            link.download = 'OS13k_' + program.name);
         
         // copy button
         copyButton.onmousedown = (e)=> { program.programMenu.NewUserProgram(program); e.stopPropagation();}
@@ -130,7 +130,7 @@ class RemixWebOSWindow extends HTMLElement
         {
             // close, remove, and rebuild (must close first)
             this.Close();
-            RebuildMenu(RemixWebOS.Save(programInfos = programInfos.filter(info=> info.id != program.id)));
+            RebuildMenu(OS13k.Save(programInfos = programInfos.filter(info=> info.id != program.id)));
         }
 
         // screenshot button
@@ -147,7 +147,7 @@ class RemixWebOSWindow extends HTMLElement
                         canvasContext.fillStyle = '#fff'),
                         canvasContext.drawImage(this.iframeContent.c, 0, 0),
                     link.href = canvas.toDataURL('image/png'),
-                    link.download = 'RemixWebOS_Image_' + program.name);
+                    link.download = 'OS13k_Image_' + program.name);
             } catch(e) {} // ignore screenshot errors
         }
 
@@ -164,17 +164,17 @@ class RemixWebOSWindow extends HTMLElement
         program.Save(
             SetName(this.taskbarIcon.
             SetName(program.
-            SetName(RemixWebOS.StripHTML(iconInput.value), nameInput.value))));
+            SetName(OS13k.StripHTML(iconInput.value), nameInput.value))));
 
         folderInput.oninput = e=>
-            RebuildMenu(program.Save(program.userFolder = RemixWebOS.StripHTML(folderInput.value.trim())));
+            RebuildMenu(program.Save(program.userFolder = OS13k.StripHTML(folderInput.value.trim())));
 
         // size options
         widthInput.onchange =
         heightInput.onchange = e=>
         {
-            program.width = widthInput.value = RemixWebOS.Clamp(widthInput.value, defaultWidth, 99);
-            program.height = heightInput.value = RemixWebOS.Clamp(heightInput.value, program.width*2, 99);
+            program.width = widthInput.value = OS13k.Clamp(widthInput.value, defaultWidth, 99);
+            program.height = heightInput.value = OS13k.Clamp(heightInput.value, program.width*2, 99);
 
             // update to new size and clamp to desktop
             this.Resize(1);
@@ -195,10 +195,10 @@ class RemixWebOSWindow extends HTMLElement
         this.scale = width / program.width;
         
         // announce program when first opened
-        RemixWebOS.Speak(program.name);
+        OS13k.Speak(program.name);
 
         // add taskbar icon if it doesnt exist and set active
-        this.taskbarIcon || (this.taskbarIcon = new RemixWebOSTaskbarIcon(program, this)).SetActive();
+        this.taskbarIcon || (this.taskbarIcon = new OS13kTaskbarIcon(program, this)).SetActive();
         
         // create folder or iframe
         if (program.folder)
@@ -209,7 +209,7 @@ class RemixWebOSWindow extends HTMLElement
             // add icons to folder
             program.folder.map( stub=>
             {
-                this.iframeWrapper.appendChild(new RemixWebOSDesktopIcon(stub[-1], this));
+                this.iframeWrapper.appendChild(new OS13kDesktopIcon(stub[-1], this));
             });
         }
         else 
@@ -250,9 +250,9 @@ class RemixWebOSWindow extends HTMLElement
             // set code/help display if not user program
             program.userProgram || (this.codeText.value = program.help || iframeText);
 
-            // pass RemixWebOS constants to iframe
-            iframeContent.RemixWebOS = RemixWebOS;
-            iframeContent.RemixWebOSWindow = this;
+            // pass OS13k constants to iframe
+            iframeContent.OS13k = OS13k;
+            iframeContent.OS13kWindow = this;
             iframeContent.zzfx = zzfx;
 
             // check for extensions
@@ -281,37 +281,37 @@ class RemixWebOSWindow extends HTMLElement
                     iframeText.replace(
                         /(for\s*\([^;]*;[^;]*;|while\s*\()\s*(\S)/g, (a, b, c)=> 
                             b && c && !b.match(/\sof\s|\sin\s/g) ? 
-                                b + '++RemixWebOSL>1e5&&(e=>{throw"Timed out!"})()' +
+                                b + '++OS13kL>1e5&&(e=>{throw"Timed out!"})()' +
                                 (c == ')' ? '' : ',') + c : a ) : iframeText;
                 try
                 {
                     // create dweet or shader program
                     iframeContent.eval(
-                        `RemixWebOS=parent.RemixWebOS;x=c.getContext` +
+                        `OS13k=parent.OS13k;x=c.getContext` +
                         (program.isShader ? // preserve buffer for user programs for screenshot
                             `('webgl2'${program.userProgram ? ',{preserveDrawingBuffer:true}' : ''});` +
                             `X=Y=Z=W=0;` +
                             `onmousemove=e=>e.buttons&&(X=e.x,Y=c.height-e.y);` +
                             `onmousedown=e=>(X=Z=e.x,Y=W=c.height-e.y);` +
                             `onmouseup=e=>Z=W=0;` +
-                            `s=RemixWebOS.CreateShader(c,\`${ code }\`);` +
-                            `RemixWebOSU=t=>` +
-                            `RemixWebOS.RenderShader(c,s,t/1e3,frame++,X,Y,Z,W,c.width=innerWidth,c.height=innerHeight)`
+                            `s=OS13k.CreateShader(c,\`${ code }\`);` +
+                            `OS13kU=t=>` +
+                            `OS13k.RenderShader(c,s,t/1e3,frame++,X,Y,Z,W,c.width=innerWidth,c.height=innerHeight)`
                             :
                             `('2d');` +
                             `zzfx=parent.zzfx;` +
                             `S=Math.sin;C=Math.cos;T=Math.tan;` +
                             `R=(r,g,b,a=1)=>\`rgba(\${0|r},\${0|g},\${0|b},\${a})\`;` +
                             `u=t=>{\n${ code }\n};` +
-                            `RemixWebOSU=t=>t>RemixWebOSF-2&&` + 
+                            `OS13kU=t=>t>OS13kF-2&&` + 
                                 `u(((t=frame++/60)*60|0==frame-1)&&t>0?t+1e-6:t,` +
-                                `RemixWebOSL=0,` +
-                                `RemixWebOSF=Math.max(RemixWebOSF+100/6,t))`) +
-                            `;(RemixWebOSA=t=>(requestAnimationFrame(RemixWebOSA),` +
+                                `OS13kL=0,` +
+                                `OS13kF=Math.max(OS13kF+100/6,t))`) +
+                            `;(OS13kA=t=>(requestAnimationFrame(OS13kA),` +
                                 (program.flags & awake || program.info.allowSleep == 0 ? '' : 
-                                    `t<1e3|parent.document.activeElement==RemixWebOSWindow&&`) +
-                                    `RemixWebOSU(t)))` +
-                            `(frame=RemixWebOSF=0)`);
+                                    `t<1e3|parent.document.activeElement==OS13kWindow&&`) +
+                                    `OS13kU(t)))` +
+                            `(frame=OS13kF=0)`);
                 } catch (e) { this.SetErrorText(e); }
             }
             
@@ -452,7 +452,7 @@ class RemixWebOSWindow extends HTMLElement
     Resize(scale, sound)
     {
         // get new width and fix window offset
-        let wNew = RemixWebOS.Clamp(this.program.width * scale, 1920, 170);
+        let wNew = OS13k.Clamp(this.program.width * scale, 1920, 170);
         this.style.left = parseInt(this.style.left) + parseInt(this.style.width) - wNew;
         
         // set new size
@@ -483,8 +483,8 @@ class RemixWebOSWindow extends HTMLElement
         // clamp window to screen
         let rect = this.getBoundingClientRect();
         clamp && (
-            this.style.left = RemixWebOS.Clamp(rect.x, innerWidth - rect.width, 0,
-            this.style.top = RemixWebOS.Clamp(rect.y, Math.max(taskbarHeight, innerHeight - rect.height), taskbarHeight)));
+            this.style.left = OS13k.Clamp(rect.x, innerWidth - rect.width, 0,
+            this.style.top = OS13k.Clamp(rect.y, Math.max(taskbarHeight, innerHeight - rect.height), taskbarHeight)));
 
         // set focus to iframe using timeout
         if (focus && !loading)
@@ -519,7 +519,7 @@ class RemixWebOSWindow extends HTMLElement
             this.taskbarIcon && this.taskbarIcon.SetActive(active, clamp, focus);
             
             // save start program if finished startup and not sticky
-            finishedStartup & !(this.program.flags & sticky) && RemixWebOS.Save(startProgramId = this.program.id);
+            finishedStartup & !(this.program.flags & sticky) && OS13k.Save(startProgramId = this.program.id);
         }
     }
     
@@ -534,7 +534,7 @@ class RemixWebOSWindow extends HTMLElement
         this.iframeWrapper.webkitRequestFullScreen ? this.iframeWrapper.webkitRequestFullScreen() :
             this.iframeWrapper.requestFullscreen ? this.iframeWrapper.requestFullscreen() : 0;
         
-        RemixWebOS.Trophy('🕹️','RemixWebOS','Pro Gamer','Went Full Screen');
+        OS13k.Trophy('🕹️','OS13k','Pro Gamer','Went Full Screen');
     }
     
     ShowCode(silent)
@@ -543,7 +543,7 @@ class RemixWebOSWindow extends HTMLElement
         this.codeDisplay.style.display = (this.showCode = !this.showCode) ? 'inline' : 'none';
         silent || SystemSound(this.program.help ? soundHelp : soundCode);
 
-        this.program.help || RemixWebOS.Trophy('👨‍💻','RemixWebOS','Hacker','Viewed Code');
+        this.program.help || OS13k.Trophy('👨‍💻','OS13k','Hacker','Viewed Code');
     }
     
     Reload(silent, clamp=1)
@@ -555,8 +555,8 @@ class RemixWebOSWindow extends HTMLElement
         
         // reload program or reload iframe and set invisible
         !this.program.isExternal && this.iframeContent &&
-            this.iframeContent.RemixWebOSReload ?
-            this.iframeContent.RemixWebOSReload() :
+            this.iframeContent.OS13kReload ?
+            this.iframeContent.OS13kReload() :
             this.program.userProgram ?
                 this.SetCode(this.program.info.code) :
             this.CreateFrame(this.iframe.style.visibility = '');
@@ -578,5 +578,5 @@ class RemixWebOSWindow extends HTMLElement
         this.taskbarIcon.remove();
         this.remove();
     }
-} // RemixWebOSWindow
-customElements.define('w-', RemixWebOSWindow);
+} // OS13kWindow
+customElements.define('w-', OS13kWindow);

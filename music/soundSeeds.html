@@ -9,7 +9,7 @@ Auto Save <input id=E type=checkbox><hr><div id=D><script>
 X = 0;
 
 // stop last sound and play sound
-P = e=> {X && X.stop(); X = RemixWebOS.PlaySeed(e)}
+P = e=> {X && X.stop(); X = OS13k.PlaySeed(e)}
 
 // save the seed and play it
 V = e=> B(A.push(e = S.value.replace(/'/g, '')), P(e));
@@ -17,7 +17,7 @@ V = e=> B(A.push(e = S.value.replace(/'/g, '')), P(e));
 // refresh list
 B = e=>
 {
-    localStorage.RemixWebOSSS = JSON.stringify(A);             // save seed list
+    localStorage.OS13kSS = JSON.stringify(A);             // save seed list
     D.innerHTML = '';                                     // reset html
     A.map((i,j)=>                                         // go through list
         D.innerHTML = `<button onmousedown=B(P(A[${       // remove button
@@ -27,6 +27,6 @@ B = e=>
 }
 
 // load saved sounds
-B(A = localStorage.RemixWebOSSS ? JSON.parse(localStorage.RemixWebOSSS) : []);
+B(A = localStorage.OS13kSS ? JSON.parse(localStorage.OS13kSS) : []);
 
 </script>

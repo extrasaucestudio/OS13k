@@ -1,7 +1,7 @@
 rem SIMPLE BUILD SCRIPT FOR JS13k by FRANK FORCE
 rem minfies and combines index.html and index.js and zips the result
 
-set name=RemixWebOS
+set name=OS13k
 
 rem install closure and advzip globally if necessary
 rem npm install -g google-closure-compiler
