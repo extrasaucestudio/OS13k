@@ -1,9 +1,9 @@
 'use strict'
 
 ///////////////////////////////////////////////////////////////////////////////
-// OS13kTaskbarIcon - icon on taskbar for opened programs
+// RemixWebOSTaskbarIcon - icon on taskbar for opened programs
 
-class OS13kTaskbarIcon extends HTMLElement
+class RemixWebOSTaskbarIcon extends HTMLElement
 {
 	constructor(program, windowOrMenu)
     {
@@ -42,5 +42,5 @@ class OS13kTaskbarIcon extends HTMLElement
         active && activeTaskbarIcon != this && (activeTaskbarIcon && activeTaskbarIcon.SetActive(0), activeTaskbarIcon = this);
     }
     
-} // OS13kTaskbarIcon
-customElements.define('i-', OS13kTaskbarIcon);
+} // RemixWebOSTaskbarIcon
+customElements.define('i-', RemixWebOSTaskbarIcon);

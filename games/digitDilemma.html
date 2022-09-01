@@ -26,16 +26,16 @@ R = Randomize
 // 5. Regpack, don't replace B
 // 6. Put it in <body bgcolor=#000 onload=""id=B>
 
-OS13k = parent.OS13k;
+RemixWebOS = parent.RemixWebOS;
 
 setInterval(
 x=>
 {
     // no pieces left or randomize on R
-    let input = OS13k.Input(window);
+    let input = RemixWebOS.Input(window);
     if (!pieceCount || input.keypress[187] || input.keypress[189])
     {
-        pieceCount||level&&level>best&&OS13k.Trophy('☺','Digit Dilemma','Level Complete',best = level);
+        pieceCount||level&&level>best&&RemixWebOS.Trophy('☺','Digit Dilemma','Level Complete',best = level);
 
         // go up a level when there are no pieces left
         pieceCount ? (input.keypress[187] ? level <= best && ++level : level > 1 && --level) : ++level;
@@ -172,7 +172,7 @@ x=>
     B.innerHTML = o + '<span style=color:#fff>' + level;
 }, 16);
 
-let best = OS13k.GetTrophy('Digit Dilemma','Level Complete'),
+let best = RemixWebOS.GetTrophy('Digit Dilemma','Level Complete'),
 level = best, playArea = [], pieceCount=0, movePos=0, hadInput=0,
 
 R=x=>(Math.random()*1e9|0)%x, // random value

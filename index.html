@@ -1,17 +1,7 @@
-
-<!--
-
-OS13k is a tiny operating system designed for JS13k.
-It has native support for Shadertoys, Dweets, ZzFX, trophies, and more.
-https://github.com/KilledByAPixel/OS13k
-
-❤️ OS13k Team ✌️😄
-
--->
 <head></head><body>
-<title>OS13k - A Tiny JavaScript OS</title>
+<title>Remix WebOS</title>
 <link rel=icon type=image/x-icon href='favicon.ico'/>
-<meta name="title" content="OS13k"></meta>
+<meta name="title" content="RemixWebOS"></meta>
 <meta name="author" content="Frank Force"></meta>
 <meta name="description" content="A Fantasy OS and Tiny Game Engine for Creative Coding"></meta>
 <meta name=viewport content='width=device-width,initial-scale=1,user-scalable=0'>
@@ -245,20 +235,20 @@ span                { white-space:nowrap; }
 <script>
 
 ///////////////////////////////////////////////////////////////////////////////
-// OS13k Version Check
+// RemixWebOS Version Check
 
-const OS13kVersion = 81;
+const RemixWebOSVersion = 81;
 {
     // version check, clear local storage if older
-    if (localStorage.OS13k && localStorage.OS13kVersion != OS13kVersion)
+    if (localStorage.RemixWebOS && localStorage.RemixWebOSVersion != RemixWebOSVersion)
     {
-        alert('OS13k version out of date! System reset in 3, 2, 1...');
+        alert('RemixWebOS version out of date! System reset in 3, 2, 1...');
 
-        delete localStorage.OS13k;
+        delete localStorage.RemixWebOS;
         //localStorage.clear();
     }
 
-    localStorage.OS13kVersion = OS13kVersion;
+    localStorage.RemixWebOSVersion = RemixWebOSVersion;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -269,45 +259,45 @@ const OS13kVersion = 81;
 // 3. Google Closure https://closure-compiler.appspot.com/home
 // 4. JavaScript Minifier https://javascript-minifier.com/
 // 5. Zip
-// 6. Advzip "advzip -z -4 -i 1000 OS13kMin.zip"
+// 6. Advzip "advzip -z -4 -i 1000 RemixWebOSMin.zip"
 
 // ==ClosureCompiler==
 // @compilation_level ADVANCED_OPTIMIZATIONS
 // @language_out ECMASCRIPT_2019
-// @js_externs OS13k.Clamp, OS13k.Percent, OS13k.Lerp, OS13k.Hash
-// @js_externs OS13k.Random, OS13k.randomSeed, iframeContent.OS13kReload
-// @js_externs OS13k.Trophies, OS13k.Trophy, OS13k.GetTrophy
-// @js_externs OS13k.PlaySamples, OS13k.Note, OS13k.PianoKey
-// @js_externs OS13k.PlayMusic, OS13k.GetAnalyser, OS13k.GetAnalyserData
-// @js_externs OS13k.Speak, OS13k.StopSpeech, OS13k.PlaySeed
-// @js_externs OS13k.SeedSamples, OS13k.SeedParameters
-// @js_externs OS13k.Settings, OS13k.SaveSettings, OS13k.Input
-// @js_externs OS13k.CreateShader, OS13k.RenderShader
-// @js_externs OS13k.KeyDirection, OS13k.StripHTML, OS13k.StringToMusic, OS13k.Popup
-// @js_externs localStorage.OS13k, localStorage.OS13kVersion, OS13k, source.gain
-// @js_externs iframeContent, iframeContent.OS13k, iframeContent.OS13kWindow
+// @js_externs RemixWebOS.Clamp, RemixWebOS.Percent, RemixWebOS.Lerp, RemixWebOS.Hash
+// @js_externs RemixWebOS.Random, RemixWebOS.randomSeed, iframeContent.RemixWebOSReload
+// @js_externs RemixWebOS.Trophies, RemixWebOS.Trophy, RemixWebOS.GetTrophy
+// @js_externs RemixWebOS.PlaySamples, RemixWebOS.Note, RemixWebOS.PianoKey
+// @js_externs RemixWebOS.PlayMusic, RemixWebOS.GetAnalyser, RemixWebOS.GetAnalyserData
+// @js_externs RemixWebOS.Speak, RemixWebOS.StopSpeech, RemixWebOS.PlaySeed
+// @js_externs RemixWebOS.SeedSamples, RemixWebOS.SeedParameters
+// @js_externs RemixWebOS.Settings, RemixWebOS.SaveSettings, RemixWebOS.Input
+// @js_externs RemixWebOS.CreateShader, RemixWebOS.RenderShader
+// @js_externs RemixWebOS.KeyDirection, RemixWebOS.StripHTML, RemixWebOS.StringToMusic, RemixWebOS.Popup
+// @js_externs localStorage.RemixWebOS, localStorage.RemixWebOSVersion, RemixWebOS, source.gain
+// @js_externs iframeContent, iframeContent.RemixWebOS, iframeContent.RemixWebOSWindow
 // @js_externs iframeContent.zzfx, zzfx, zzfxG, zzfxM
 // @js_externs settings.v, settings.m, settings.s, settings.p, settings.o
 // @js_externs settings.c, settings.d, settings.t, settings.f
-// @js_externs window.document.OS13kInput.x
-// @js_externs window.document.OS13kInput.y
-// @js_externs window.document.OS13kInput.keypress
-// @js_externs window.document.OS13kInput.mousepress
-// @js_externs window.document.OS13kInput.keydown
-// @js_externs window.document.OS13kInput.mousedown
-// @js_externs window.document.OS13kInput.mousex
-// @js_externs window.document.OS13kInput.mousey
-// @output_file_name OS13k.min.js
+// @js_externs window.document.RemixWebOSInput.x
+// @js_externs window.document.RemixWebOSInput.y
+// @js_externs window.document.RemixWebOSInput.keypress
+// @js_externs window.document.RemixWebOSInput.mousepress
+// @js_externs window.document.RemixWebOSInput.keydown
+// @js_externs window.document.RemixWebOSInput.mousedown
+// @js_externs window.document.RemixWebOSInput.mousex
+// @js_externs window.document.RemixWebOSInput.mousey
+// @output_file_name RemixWebOS.min.js
 // ==/ClosureCompiler==
 
 </script>
-<script src=OS13k\OS13kProgramMenu.js?336></script>
-<script src=OS13k\OS13kProgram.js?336></script>
-<script src=OS13k\OS13kWindow.js?336></script>
-<script src=OS13k\OS13kTaskbarIcon.js?336></script>
-<script src=OS13k\OS13kTrayIcon.js?336></script>
-<script src=OS13k\OS13kDesktopIcon.js?336></script>
-<script src=OS13k\OS13kZzFX.js?336></script>
+<script src=RemixWebOS\RemixWebOSProgramMenu.js?336></script>
+<script src=RemixWebOS\RemixWebOSProgram.js?336></script>
+<script src=RemixWebOS\RemixWebOSWindow.js?336></script>
+<script src=RemixWebOS\RemixWebOSTaskbarIcon.js?336></script>
+<script src=RemixWebOS\RemixWebOSTrayIcon.js?336></script>
+<script src=RemixWebOS\RemixWebOSDesktopIcon.js?336></script>
+<script src=RemixWebOS\RemixWebOSZzFX.js?336></script>
 <script src=programs.js?336></script>
-<script src=OS13k\OS13k.js?336></script>
-<script src=OS13k\OS13kInput.js?336></script>
+<script src=RemixWebOS\RemixWebOS.js?336></script>
+<script src=RemixWebOS\RemixWebOSInput.js?336></script>

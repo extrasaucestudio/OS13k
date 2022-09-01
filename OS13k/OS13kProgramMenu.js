@@ -1,9 +1,9 @@
 'use strict'
 
 ///////////////////////////////////////////////////////////////////////////////
-// OS13kProgramMenu - holds a list of programs
+// RemixWebOSProgramMenu - holds a list of programs
 
-class OS13kProgramMenu extends HTMLElement
+class RemixWebOSProgramMenu extends HTMLElement
 {
 	constructor(stubs, parentMenu)
     {
@@ -21,8 +21,8 @@ class OS13kProgramMenu extends HTMLElement
         for(let stub of this.programStubs)
         {
             // create program and menu
-            let program = stub[-1] = stub[-1] || new OS13kProgram(...stub);  
-            program.programMenu = program.folder ? new OS13kProgramMenu(program.folder, this) : this;
+            let program = stub[-1] = stub[-1] || new RemixWebOSProgram(...stub);  
+            program.programMenu = program.folder ? new RemixWebOSProgramMenu(program.folder, this) : this;
         }
 
         // clear programs menu
@@ -66,7 +66,7 @@ class OS13kProgramMenu extends HTMLElement
             [copyProgram.icon,, copyProgram.width, copyProgram.height, defaultFlags|code, 
                 copyProgram.name + '+', , ,++nextUserProgramId, copyProgram.userFolder] :
             ['✋',,,,defaultFlags|code,,,,++nextUserProgramId, userFolder],
-            program = stub[-1] = new OS13kProgram(...stub);
+            program = stub[-1] = new RemixWebOSProgram(...stub);
         
         // add to menu program infos
         this.programStubs.push(stub);
@@ -92,5 +92,5 @@ class OS13kProgramMenu extends HTMLElement
         return program;
     }
 
-} // OS13kProgramMenu
-customElements.define('m-', OS13kProgramMenu);
+} // RemixWebOSProgramMenu
+customElements.define('m-', RemixWebOSProgramMenu);

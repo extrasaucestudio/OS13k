@@ -5,17 +5,17 @@
 <button onmousedown=V()>Save</button>
 <button onclick=W()>Load</button><p><a id=H download></a><div id=B style=display:grid;justify-content:center><script>
 
-OS13k = parent.OS13k;
+RemixWebOS = parent.RemixWebOS;
 M = [[],[[]]]; // music
 
 // play music
-P = e=>(A=OS13k.PlayMusic(O(S()))).loop=L.checked
+P = e=>(A=RemixWebOS.PlayMusic(O(S()))).loop=L.checked
 
 // stop music
 onunload = S = e=> A && A.stop();
 
 // set instrument
-I = (s, x)=> M[0][x] = OS13k.SeedParameters(s, 1, 1, 0, OS13k.Note(-33));
+I = (s, x)=> M[0][x] = RemixWebOS.SeedParameters(s, 1, 1, 0, RemixWebOS.Note(-33));
 
 // get name of note
 Q=e=>e ? e > 0 ? 
@@ -36,7 +36,7 @@ N = (e, x, y)=>
             n = M[1][0][x][y] > 0 ? M[1][0][x][y] : 0,
             (n|0) + ((n*10%10 + 10 + (e.keyCode - 39)) / 10)%1
         ) :
-        OS13k.PianoKey(e) >= 0 ? v = 12 + OS13k.PianoKey(e) : // key
+        RemixWebOS.PianoKey(e) >= 0 ? v = 12 + RemixWebOS.PianoKey(e) : // key
         -3; // no valid input
 
     // if input was valid
@@ -48,11 +48,11 @@ N = (e, x, y)=>
         // set zzfx parameters
         p = [...M[0][x]];                  // copy instrument
         p[0] *= 1 - v%1;                   // volume
-        p[2] = OS13k.Note(v - 12|0, p[2]); // frequency
+        p[2] = RemixWebOS.Note(v - 12|0, p[2]); // frequency
 
         // stop old sound and play new one if valid
         Z && Z.stop();
-        Z = v > 0 && OS13k.PlaySamples(parent.zzfxG(...p), 1);
+        Z = v > 0 && RemixWebOS.PlaySamples(parent.zzfxG(...p), 1);
     }
 
     // only allow to continue if tab
@@ -63,7 +63,7 @@ N = (e, x, y)=>
 O = e=>
 {
     // create music format, with padding at end
-    m = [M[0], [[],[[]]], [], OS13k.Clamp(T.value, 1e3, 30)];
+    m = [M[0], [[],[[]]], [], RemixWebOS.Clamp(T.value, 1e3, 30)];
 
     // set sequence
     m[2][0] = x = 0;
@@ -120,7 +120,7 @@ R = e=>
                 I(m = M[0][x]?`zzfx(...[${M[0][x]}])` : "", x),
 
                 // instrument
-                `<input style=width:80 oninput=I(this.value,${x});Z&&Z.stop();Z=this.value&&OS13k.PlaySeed(this.value,1,1,0,OS13k.Note(-21),1) value=${m}>`
+                `<input style=width:80 oninput=I(this.value,${x});Z&&Z.stop();Z=this.value&&RemixWebOS.PlaySeed(this.value,1,1,0,RemixWebOS.Note(-21),1) value=${m}>`
             );
     }
     B.innerHTML = o;
@@ -144,7 +144,7 @@ W = e=>
     try
     {
         // load song data
-        M = OS13k.StringToMusic(d = prompt `ZzFXM Data`, 1);
+        M = RemixWebOS.StringToMusic(d = prompt `ZzFXM Data`, 1);
 
         // set end at max channel length
         M[1][0][0][M[1][0].reduce((a,c)=>Math.max(a, c.length), 0)] = -2;

@@ -1,9 +1,9 @@
 'use strict'
 
 ///////////////////////////////////////////////////////////////////////////////
-// OS13kDesktopIcon - a shortcut icon to appear on the desktop
+// RemixWebOSDesktopIcon - a shortcut icon to appear on the desktop
 
-class OS13kDesktopIcon extends HTMLElement
+class RemixWebOSDesktopIcon extends HTMLElement
 {
 	constructor(program, window)
     {
@@ -18,5 +18,5 @@ class OS13kDesktopIcon extends HTMLElement
     }
     
     Open() { this.window && this.window.SetActive(); this.program.Open(); }
-} // OS13kDesktopIcon
-customElements.define('d-', OS13kDesktopIcon);
+} // RemixWebOSDesktopIcon
+customElements.define('d-', RemixWebOSDesktopIcon);

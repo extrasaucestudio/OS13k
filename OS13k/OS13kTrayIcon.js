@@ -1,9 +1,9 @@
 'use strict'
 
 ///////////////////////////////////////////////////////////////////////////////
-// OS13kTrayIcon - icon on taskbar tray for OS shortcuts
+// RemixWebOSTrayIcon - icon on taskbar tray for OS shortcuts
 
-class OS13kTrayIcon extends HTMLElement
+class RemixWebOSTrayIcon extends HTMLElement
 {
 	constructor()
     {
@@ -23,5 +23,5 @@ class OS13kTrayIcon extends HTMLElement
     }
     
     Open() { this.program.Toggle(); }
-} // OS13kTrayIcon
-customElements.define('t-', OS13kTrayIcon);
+} // RemixWebOSTrayIcon
+customElements.define('t-', RemixWebOSTrayIcon);

@@ -3,7 +3,7 @@
 Lava Rush by jaburns
 https://github.com/jaburns/lava-rush-2k
 
-OS13k Remaster by KilledByAPixel
+RemixWebOS Remaster by KilledByAPixel
 
 */-->
 <style>
@@ -28,7 +28,7 @@ h1
 <canvas id=a width=320 height=200>
 <script>
 
-const OS13k = parent.OS13k;
+const RemixWebOS = parent.RemixWebOS;
 
 $init = $a => (
     $shaderWriteBuffer = [0,0,0,-30,0,40,0,0,0,0,0,0],
@@ -112,13 +112,13 @@ $main = $a => {
 
     g.uniform4fv(g.getUniformLocation($shader, 'g'), $shaderWriteBuffer);
 
-    OS13k.RenderShader(a, $shader);
+    RemixWebOS.RenderShader(a, $shader);
 
     if ($shaderWriteBuffer[DEAD_FRAMES])
-        $score&&$score>OS13k.GetTrophy('Lava Rush','High Score')&&OS13k.Trophy('🌋','Lava Rush','High Score',$score);
+        $score&&$score>RemixWebOS.GetTrophy('Lava Rush','High Score')&&RemixWebOS.Trophy('🌋','Lava Rush','High Score',$score);
 
     if ($shaderWriteBuffer[WON_FRAMES])
-        OS13k.Trophy('🏆','Lava Rush','Escaped The Volcano');
+        RemixWebOS.Trophy('🏆','Lava Rush','Escaped The Volcano');
 
     g.readPixels(0,0, 2, 1, g.RGBA, g.UNSIGNED_BYTE, $shaderReadBuffer );
 
@@ -329,7 +329,7 @@ void mainImage( out vec4 _FragColor, in vec2 _FragCoord )
 }
 `;
 
-$shader = OS13k.CreateShader(a, shaderCode);
+$shader = RemixWebOS.CreateShader(a, shaderCode);
 $init();
 $main();
 

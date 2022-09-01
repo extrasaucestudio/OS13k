@@ -17,7 +17,7 @@ const programStubs =
     [
         [,'system/systemTest.html',600,370,defaultFlags|code],
         ['⌨️🖱️','system/inputTest.dweet.js'],
-        ['✌️😄','index.html',,,,'Meta OS13k'],
+        ['✌️😄','index.html',,,,'Meta RemixWebOS'],
     ]],
 ]],
 ['🛠️',,,,shortcut,'Apps',,
@@ -32,11 +32,11 @@ const programStubs =
 ]],
 ['🎶',,,,shortcut,'Music',,
 [
-    ['🎵','music/musicPlayer.html',500,330,sticky,,'OS13k can play music using the tiny ZzFXM format.\nJS13k games can add their music to your library.\nPlay games to collect more music.'],
+    ['🎵','music/musicPlayer.html',500,330,sticky,,'RemixWebOS can play music using the tiny ZzFXM format.\nJS13k games can add their music to your library.\nPlay games to collect more music.'],
     ['👁️','music/visualizer.dweet.js',,,awake|full|resize|code],
     ['🎹','music/piano.html',520,510,reload|shortcut],
     ['🥁','music/sequencer.html',800,,,,'Keyboard = Note\nUp/Down = Volume\nSpace = Stop\nEnter = End'],
-    ['🌱','music/soundSeeds.html',350,480,resize|reload,,'OS13k can play sounds using a hashed string.\nYou can also paste in ZzFX sounds.'],
+    ['🌱','music/soundSeeds.html',350,480,resize|reload,,'RemixWebOS can play sounds using a hashed string.\nYou can also paste in ZzFX sounds.'],
     ['🦈','music/byteBeatPlayer.html',320,89,reload,,'Enter a funtion and length in seconds to generate music.'],
     ['🎼','music/bach.dweet.js',,,,,'By Rodrigo Siqueira'],
     ['<span style=color:#f00>𝓜','music/minBytes.html',450,450],

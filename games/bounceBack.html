@@ -5,7 +5,7 @@ canvas{width:100%;height:100%;image-rendering:-moz-crisp-edges;image-rendering:p
 
 // BOUNCE BACK - by KilledByAPixel
 
-OS13k = parent.OS13k;
+RemixWebOS = parent.RemixWebOS;
 
 ///////////////////////////////////////////////////////////////////////////////
 // helper functions
@@ -271,7 +271,7 @@ function EngineUpdate(frameTime=0)
     nextFrameMS = nextFrameMS + 1000 / 60;
 
     // update volume
-    const settings = parent.OS13k.Settings();
+    const settings = parent.RemixWebOS.Settings();
     zzfx_v = settings.v;
 
     // fit canvas to window
@@ -859,8 +859,8 @@ function NextLevel()
     levelNumber = nextLevel;
     nextLevel = (nextLevel+1)%11;
 
-    if (levelNumber > OS13k.GetTrophy('Bounce Back','Warp Level'))
-        OS13k.Trophy('🌀','Bounce Back', 'Warp Level', levelNumber)
+    if (levelNumber > RemixWebOS.GetTrophy('Bounce Back','Warp Level'))
+        RemixWebOS.Trophy('🌀','Bounce Back', 'Warp Level', levelNumber)
 
     if (!speedRunMode && levelNumber>warpLevel)
         warpLevel = levelNumber;
@@ -1671,7 +1671,7 @@ class Pickup extends MyGameObject
         }
 
         if (playerData.coins >= 100)
-            OS13k.Trophy('🤑', 'Bounce Back', '100 Coins')
+            RemixWebOS.Trophy('🤑', 'Bounce Back', '100 Coins')
 
         this.Destroy();
     }
@@ -2082,15 +2082,15 @@ class ShieldEnemy extends Enemy
                 localStorage[savePrefix+"won"]=1;
                 speedRunTime=speedRunTime|0;
 
-                OS13k.Trophy('🏆', 'Bounce Back', 'You Win!');
+                RemixWebOS.Trophy('🏆', 'Bounce Back', 'You Win!');
 
                 if (speedRunMode && (!speedRunBestTime || speedRunTime < speedRunBestTime))
                 {
-                    OS13k.Trophy('🏃‍♂️', 'Bounce Back', 'Speed Run Complete');
+                    RemixWebOS.Trophy('🏃‍♂️', 'Bounce Back', 'Speed Run Complete');
 
-                    const trophyTime = OS13k.GetTrophy('Bounce Back','Speed Run Time');
+                    const trophyTime = RemixWebOS.GetTrophy('Bounce Back','Speed Run Time');
                     if (!trophyTime || speedRunTime < trophyTime)
-                        OS13k.Trophy('⏲️','Bounce Back','Speed Run Time', speedRunTime);
+                        RemixWebOS.Trophy('⏲️','Bounce Back','Speed Run Time', speedRunTime);
 
                     speedRunBestTime = speedRunTime;
                     localStorage[savePrefix+"best"]=speedRunBestTime;
